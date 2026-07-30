@@ -1,79 +1,880 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Your Name — Portfolio</title>
-  <meta name="description" content="Personal portfolio of Your Name">
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Md Nurul Huda Nabin | Laravel & .NET Developer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #07111f;
+            --card: rgba(255, 255, 255, .08);
+            --border: rgba(255, 255, 255, .15);
+            --text: #f8fafc;
+            --muted: #a8b3c7;
+            --green: #22c55e;
+            --cyan: #06b6d4;
+            --yellow: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            color: var(--text);
+            line-height: 1.7;
+            background: radial-gradient(circle at 10% 10%, rgba(34, 197, 94, .22), transparent 30%),
+                radial-gradient(circle at 90% 0, rgba(6, 182, 212, .18), transparent 30%),
+                linear-gradient(180deg, #07111f, #0f172a 50%, #07111f);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit
+        }
+
+        .container {
+            width: min(1160px, 92%);
+            margin: auto
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 9;
+            background: rgba(7, 17, 31, .86);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--border)
+        }
+
+        .nav {
+            height: 74px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900
+        }
+
+        .logo span {
+            color: var(--green)
+        }
+
+        .menu {
+            display: flex;
+            gap: 24px;
+            color: var(--muted);
+            font-weight: 600;
+            font-size: 14px
+        }
+
+        .menu a:hover {
+            color: var(--green)
+        }
+
+        .hire {
+            padding: 10px 16px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--green), var(--cyan));
+            color: #07111f !important;
+            font-weight: 900
+        }
+
+        .hero {
+            min-height: calc(100vh - 74px);
+            display: grid;
+            grid-template-columns: 1.08fr .92fr;
+            gap: 46px;
+            align-items: center;
+            padding: 74px 0
+        }
+
+        .badge {
+            display: inline-flex;
+            gap: 9px;
+            align-items: center;
+            padding: 9px 15px;
+            border-radius: 999px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            font-weight: 700;
+            margin-bottom: 20px
+        }
+
+        h1 {
+            font-size: clamp(40px, 6vw, 70px);
+            line-height: 1.06;
+            margin-bottom: 18px;
+            letter-spacing: -1.5px
+        }
+
+        .gradient {
+            background: linear-gradient(135deg, var(--green), var(--cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent
+        }
+
+        .lead {
+            font-size: 18px;
+            color: var(--muted);
+            max-width: 730px;
+            margin-bottom: 28px
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 28px
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 13px 19px;
+            border-radius: 14px;
+            font-weight: 900;
+            border: 1px solid transparent;
+            transition: .25s
+        }
+
+        .btn:hover {
+            transform: translateY(-3px)
+        }
+
+        .primary {
+            background: linear-gradient(135deg, var(--green), var(--cyan));
+            color: #07111f
+        }
+
+        .outline {
+            background: var(--card);
+            border-color: var(--border)
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px
+        }
+
+        .stat {
+            padding: 18px;
+            border-radius: 18px;
+            background: var(--card);
+            border: 1px solid var(--border)
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 28px;
+            color: var(--green)
+        }
+
+        .stat span {
+            font-size: 13px;
+            color: var(--muted)
+        }
+
+        .profile {
+            padding: 26px;
+            border-radius: 34px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, .13), rgba(255, 255, 255, .055));
+            border: 1px solid var(--border);
+            box-shadow: 0 28px 90px rgba(0, 0, 0, .35)
+        }
+
+        .photo {
+            height: 480px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 28px;
+            background: radial-gradient(circle at center 35%, rgba(34, 197, 94, .22), transparent 34%), rgba(255, 255, 255, .05);
+            border: 1px solid var(--border)
+        }
+
+        .photo img {
+            width: 145%;
+            max-height: 100%;
+            object-fit: contain;
+            object-position: bottom center;
+            display: block;
+            filter: drop-shadow(0 26px 28px rgba(0, 0, 0, .35))
+        }
+
+        .profile-info {
+            margin-top: 18px;
+            padding: 20px;
+            border-radius: 22px;
+            background: rgba(7, 17, 31, .58);
+            border: 1px solid var(--border)
+        }
+
+        .profile-info h3 {
+            font-size: 24px
+        }
+
+        .profile-info p,
+        .mini-contact {
+            color: var(--muted)
+        }
+
+        .mini-contact {
+            display: grid;
+            gap: 8px;
+            font-size: 14px;
+            margin-top: 12px
+        }
+
+        .mini-contact i {
+            color: var(--green);
+            width: 20px
+        }
+
+        section {
+            padding: 78px 0
+        }
+
+        .section-title {
+            margin-bottom: 34px
+        }
+
+        .section-title span {
+            color: var(--green);
+            font-size: 13px;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            font-weight: 900
+        }
+
+        .section-title h2 {
+            font-size: clamp(30px, 4vw, 46px);
+            line-height: 1.18
+        }
+
+        .grid {
+            display: grid;
+            gap: 22px
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(2, 1fr)
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(3, 1fr)
+        }
+
+        .card {
+            padding: 25px;
+            border-radius: 24px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            transition: .25s
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, .11)
+        }
+
+        .card h3 {
+            font-size: 22px;
+            margin-bottom: 10px
+        }
+
+        .card p {
+            color: var(--muted)
+        }
+
+        .icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 17px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, var(--green), var(--cyan));
+            color: #07111f;
+            font-size: 23px;
+            margin-bottom: 17px
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px
+        }
+
+        .skill {
+            padding: 10px 15px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .075);
+            border: 1px solid var(--border);
+            font-weight: 650;
+            font-size: 14px
+        }
+
+        .timeline {
+            display: grid;
+            gap: 18px
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 190px 1fr;
+            gap: 22px;
+            padding: 24px;
+            border-radius: 24px;
+            background: var(--card);
+            border: 1px solid var(--border)
+        }
+
+        .date {
+            color: var(--green);
+            font-weight: 900
+        }
+
+        .company {
+            color: var(--yellow);
+            font-weight: 700;
+            margin: 3px 0 9px
+        }
+
+        .timeline-item p {
+            color: var(--muted)
+        }
+
+        .project {
+            min-height: 260px
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 18px
+        }
+
+        .tag {
+            font-size: 12px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            color: #07111f;
+            background: var(--green);
+            font-weight: 900
+        }
+
+        .contact {
+            text-align: center;
+            max-width: 820px;
+            margin: auto
+        }
+
+        .contact p {
+            color: var(--muted);
+            margin: 12px 0 26px
+        }
+
+        footer {
+            padding: 30px 0;
+            text-align: center;
+            color: var(--muted);
+            border-top: 1px solid var(--border)
+        }
+
+        @media(max-width:940px) {
+
+            .hero,
+            .grid-2,
+            .grid-3 {
+                grid-template-columns: 1fr
+            }
+
+            .menu {
+                display: none
+            }
+
+            .photo {
+                height: 430px
+            }
+        }
+
+        @media(max-width:640px) {
+            .stats {
+                grid-template-columns: 1fr
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr
+            }
+
+            .photo {
+                height: 360px
+            }
+
+            .photo img {
+                width: 145%
+            }
+        }
+    </style>
+
+    <style>
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 18px 20px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .1);
+            transition: .3s;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+            border-color: #22c55e;
+            box-shadow: 0 15px 30px rgba(34, 197, 94, .15);
+        }
+
+        .skill-item i {
+            font-size: 28px;
+            width: 40px;
+            text-align: center;
+            color: #22c55e;
+        }
+
+        .skill-item span {
+            font-size: 15px;
+            font-weight: 600;
+            color: #fff;
+        }
+    </style>
+
+    <style>
+        .timeline-item {
+            display: flex;
+            gap: 25px;
+            align-items: flex-start;
+            padding: 25px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .company-brand {
+            min-width: 80px;
+            width: 80px;
+            height: 80px;
+            background: #fff;
+            border-radius: 18px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .15);
+        }
+
+        .company-brand img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .date {
+            color: #22c55e;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .company {
+            color: #f59e0b;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+    </style>
+
 </head>
+
 <body>
-  <header class="site-header">
-    <div class="container">
-      <h1 class="site-title">Your Name</h1>
-      <p class="site-tag">Developer • Designer • Problem Solver</p>
-      <nav class="nav">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
+    <header>
+        <div class="container nav">
+            <a href="#home" class="logo">Nabin<span>.</span></a>
+            <nav class="menu">
+                <a href="#about">About</a><a href="#skills">Skills</a><a href="#experience">Experience</a>
+                <a href="#projects">Projects</a><a href="#contact" class="hire">Hire Me</a>
+            </nav>
+        </div>
+    </header>
 
-  <main class="container">
-    <section id="about" class="section">
-      <h2>About</h2>
-      <p class="lead">Hi — I'm <strong>Your Name</strong>. I build web applications and write clean, maintainable code. Replace this placeholder text with a short bio about yourself.</p>
-    </section>
+    <main>
+        <section class="container hero" id="home">
+            <div>
+                <div class="badge"><i class="fa-brands fa-laravel"></i> Laravel • .NET • ERP • Banking Software</div>
+                <h1>Md Nurul Huda Nabin<br><span class="gradient">Full Stack Developer</span></h1>
+                <p class="lead">Senior Software Engineer with 11+ years of experience in PHP Laravel, ASP.NET Core, C#,
+                    REST API, MySQL, SQL Server, Oracle, ERP, HRM, POS, Microfinance and Core Banking Software.</p>
+                <div class="actions">
+                    <a class="btn primary" href="#projects"><i class="fa-solid fa-briefcase"></i> View Projects</a>
+                    <a class="btn outline" href="#contact"><i class="fa-solid fa-paper-plane"></i> Contact Me</a>
+                    <a class="btn outline" href="Md-Nurul-Huda-Nabin-CV.pdf" download><i
+                            class="fa-solid fa-download"></i> Download CV</a>
+                </div>
+                <div class="stats">
+                    <div class="stat"><strong>11+</strong><span>Years Experience</span></div>
+                    <div class="stat"><strong>20+</strong><span>Enterprise Modules</span></div>
+                    <div class="stat"><strong>5+</strong><span>Major Industries</span></div>
+                </div>
+            </div>
 
-    <section id="projects" class="section">
-      <h2>Projects</h2>
-      <div class="projects-grid">
-        <article class="project-card">
-          <h3>Project One</h3>
-          <p>Short description of project one. Tech: HTML, CSS, JS.</p>
-          <p><a href="#">Repo / Live</a></p>
-        </article>
+            <aside class="profile">
+                <div class="photo">
+                    <img src="image/profile.png" alt="Md Nurul Huda Nabin">
+                </div>
+                <div class="profile-info">
+                    <h3>Laravel & .NET Developer</h3>
+                    <p>Senior Software Engineer | Dhaka, Bangladesh</p>
+                    <div class="mini-contact">
+                        <div><i class="fa-solid fa-envelope"></i> nabin0007@gmail.com</div>
+                        <div><i class="fa-solid fa-phone"></i> 01934489231</div>
+                        <div><i class="fa-brands fa-github"></i> github.com/nabin0007</div>
+                        <div><i class="fa-brands fa-linkedin"></i> linkedin.com/in/md-nurul-huda-nobin-15933b59</div>
+                    </div>
+                </div>
+            </aside>
+        </section>
 
-        <article class="project-card">
-          <h3>Project Two</h3>
-          <p>Short description of project two. Tech: React, Node.</p>
-          <p><a href="#">Repo / Live</a></p>
-        </article>
+        <section class="container" id="about">
+            <div class="section-title"><span>About Me</span>
+                <h2>Enterprise application developer focused on scalable business solutions.</h2>
+            </div>
+            <div class="grid grid-2">
+                <div class="card">
+                    <div class="icon"><i class="fa-solid fa-code"></i></div>
+                    <h3>Career Summary</h3>
+                    <p>I build scalable web applications, RESTful APIs and enterprise systems with strong experience in
+                        ERP, HRM, POS, microfinance and banking software including CIB and CBS systems.</p>
+                </div>
+                <div class="card">
+                    <div class="icon"><i class="fa-brands fa-laravel"></i></div>
+                    <h3>Laravel Focus</h3>
+                    <p>Specialized in Laravel web application development, MySQL optimization, AJAX UI, authentication,
+                        authorization, API integration, payment gateway integration and cPanel deployment.</p>
+                </div>
+            </div>
+        </section>
 
-        <article class="project-card">
-          <h3>Project Three</h3>
-          <p>Short description of project three. Tech: Python, Flask.</p>
-          <p><a href="#">Repo / Live</a></p>
-        </article>
-      </div>
-    </section>
+        <section class="container" id="skills">
+            <div class="section-title"><span>Technical Skills</span>
+                <h2>Technologies and tools</h2>
+            </div>
+            <div class="card">
+                <div class="skills-grid">
 
-    <section id="skills" class="section">
-      <h2>Skills</h2>
-      <ul class="skills-list">
-        <li>JavaScript</li>
-        <li>HTML &amp; CSS</li>
-        <li>React</li>
-        <li>Node.js</li>
-        <li>Python</li>
-      </ul>
-    </section>
+                    <div class="skill-item">
+                        <i class="fa-brands fa-laravel"></i>
+                        <span>PHP Laravel</span>
+                    </div>
 
-    <section id="contact" class="section">
-      <h2>Contact</h2>
-      <p>If you'd like to get in touch: <a href="mailto:you@example.com">you@example.com</a></p>
-      <p>GitHub: <a href="https://github.com/nabin0007">@nabin0007</a></p>
-    </section>
-  </main>
+                    <div class="skill-item">
+                        <i class="fa-solid fa-database"></i>
+                        <span>MySQL</span>
+                    </div>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>&copy; <span id="year"></span> Your Name — Built with ❤️</p>
-    </div>
-  </footer>
+                    <div class="skill-item">
+                        <i class="fa-solid fa-plug"></i>
+                        <span>REST API</span>
+                    </div>
 
-  <script src="script.js"></script>
+                    <div class="skill-item">
+                        <i class="fa-solid fa-bolt"></i>
+                        <span>AJAX</span>
+                    </div>
+
+                    <div class="skill-item">
+                        <i class="fa-brands fa-js"></i>
+                        <span>JavaScript</span>
+                    </div>
+
+                    <div class="skill-item">
+                        <i class="fa-solid fa-server"></i>
+                        <span>cPanel Deployment</span>
+                    </div>
+
+                    <div class="skill-item">
+                        <i class="fa-solid fa-code"></i>
+                        <span>ASP.NET Core</span>
+                    </div>
+
+                    <div class="skill-item">
+                        <i class="fa-brands fa-microsoft"></i>
+                        <span>C#</span>
+                    </div>
+
+                    <div class="skill-item">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <span>ASP.NET MVC</span>
+                    </div>
+
+                    <div class="skill-item">
+                        <i class="fa-solid fa-database"></i>
+                        <span>SQL Server</span>
+                    </div>
+
+                    <div class="skill-item">
+                        <i class="fa-solid fa-database"></i>
+                        <span>Oracle Database</span>
+                    </div>
+
+                    <div class="skill-item">
+                        <i class="fa-brands fa-react"></i>
+                        <span>React</span>
+                    </div>
+
+                    <div class="skill-item">
+                        <i class="fa-brands fa-java"></i>
+                        <span>Spring Boot</span>
+                    </div>
+
+                    <div class="skill-item">
+                        <i class="fa-solid fa-network-wired"></i>
+                        <span>Microservices</span>
+                    </div>
+
+                    <div class="skill-item">
+                        <i class="fa-brands fa-docker"></i>
+                        <span>Docker</span>
+                    </div>
+
+                    <div class="skill-item">
+                        <i class="fa-solid fa-stream"></i>
+                        <span>Kafka</span>
+                    </div>
+
+                    <div class="skill-item">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <span>Crystal Reports</span>
+                    </div>
+
+                    <div class="skill-item">
+                        <i class="fa-brands fa-git-alt"></i>
+                        <span>Git</span>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="container" id="experience">
+            <div class="section-title"><span>Experience</span>
+                <h2>Professional journey</h2>
+            </div>
+            <div class="timeline-item">
+
+                <div class="company-brand">
+                    <img src="image/company/panjeree.png" alt="Panjeree">
+                </div>
+
+                <div class="timeline-content">
+                    <div class="date">2025 - Continuing</div>
+
+                    <h3>Senior Software Engineer</h3>
+
+                    <div class="company">Panjeree Publications Ltd.</div>
+
+                    <p>
+                        Developing enterprise web applications using Laravel, .NET,
+                        REST API, MySQL, AJAX and cPanel deployment.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="timeline-item">
+
+                <div class="company-brand">
+                    <img src="image/company/leads.png" alt="LEADS">
+                </div>
+
+                <div class="timeline-content">
+                    <div class="date">2024 - 2025</div>
+
+                    <h3>Software Architect</h3>
+
+                    <div class="company">LEADS Corporation Limited</div>
+
+                    <p>
+                        Designed banking software architecture using C#, ASP.NET MVC/Core,
+                        Entity Framework and Oracle Database.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="timeline-item">
+
+                <div class="company-brand">
+                    <img src="image/company/databiz.png" alt="Databiz">
+                </div>
+
+                <div class="timeline-content">
+                    <div class="date">2022 - 2024</div>
+
+                    <h3>Team Leader / Assistant Manager</h3>
+
+                    <div class="company">Databiz Software Limited</div>
+
+                    <p>
+                        Led ERP system development for inventory, sales, purchase,
+                        HRM, finance and reporting modules.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="timeline-item">
+
+                <div class="company-brand">
+                    <img src="image/company/leads.png" alt="LEADS">
+                </div>
+
+                <div class="timeline-content">
+                    <div class="date">2019 - 2022</div>
+
+                    <h3>Senior Software Engineer</h3>
+
+                    <div class="company">LEADS Corporation Ltd.</div>
+
+                    <p>
+                        Worked on core banking software, Oracle packages,
+                        CBS implementation, debugging and optimization.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="timeline-item">
+
+                <div class="company-brand">
+                    <img src="image/company/amin.png" alt="Amin Mohammad">
+                </div>
+
+                <div class="timeline-content">
+                    <div class="date">2015 - 2019</div>
+
+                    <h3>Senior Software Engineer</h3>
+
+                    <div class="company">Amin Mohammad Group</div>
+
+                    <p>
+                        Developed web-based ERP office software using C#, ASP.NET
+                        and complex SQL queries.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="container" id="projects">
+            <div class="section-title"><span>Featured Projects</span>
+                <h2>Enterprise systems and application experience</h2>
+            </div>
+            <div class="grid grid-3">
+                <div class="card project">
+                    <div class="icon"><i class="fa-brands fa-laravel"></i></div>
+                    <h3>Laravel Web Application</h3>
+                    <p>Authentication, REST API, MySQL, AJAX, CMS modules, payment gateway integration and cPanel
+                        deployment.</p>
+                    <div class="tags"><span class="tag">Laravel</span><span class="tag">MySQL</span><span
+                            class="tag">API</span></div>
+                </div>
+                <div class="card project">
+                    <div class="icon"><i class="fa-solid fa-building"></i></div>
+                    <h3>ERP Management System</h3>
+                    <p>Inventory, sales, purchase, HRM, finance, reporting and management dashboard modules.</p>
+                    <div class="tags"><span class="tag">ERP</span><span class="tag">Reports</span><span
+                            class="tag">SQL</span></div>
+                </div>
+                <div class="card project">
+                    <div class="icon"><i class="fa-solid fa-building-columns"></i></div>
+                    <h3>Banking Software / CBS</h3>
+                    <p>Loan module, CIB, Oracle package, workflow, compliance and core banking operations.</p>
+                    <div class="tags"><span class="tag">Banking</span><span class="tag">Oracle</span><span
+                            class="tag">C#</span></div>
+                </div>
+                <div class="card project">
+                    <div class="icon"><i class="fa-solid fa-ticket"></i></div>
+                    <h3>IT Support Ticketing System</h3>
+                    <p>Requisition, approval flow, network department queue, file upload and status tracking.</p>
+                    <div class="tags"><span class="tag">MIS</span><span class="tag">Workflow</span><span
+                            class="tag">Ticket</span></div>
+                </div>
+                <div class="card project">
+                    <div class="icon"><i class="fa-solid fa-comments"></i></div>
+                    <h3>PI Chat System</h3>
+                    <p>Modern chat UI, email integration, attachment management and professional messaging interface.
+                    </p>
+                    <div class="tags"><span class="tag">Chat</span><span class="tag">Email</span><span
+                            class="tag">JS</span></div>
+                </div>
+                <div class="card project">
+                    <div class="icon"><i class="fa-solid fa-network-wired"></i></div>
+                    <h3>Microservices Platform</h3>
+                    <p>Spring Boot, Kafka, Docker, API Gateway, Eureka and scalable service communication.</p>
+                    <div class="tags"><span class="tag">Spring Boot</span><span class="tag">Kafka</span><span
+                            class="tag">Docker</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container" id="contact">
+            <div class="contact card">
+                <div class="section-title"><span>Contact</span>
+                    <h2>Let’s discuss your project</h2>
+                </div>
+                <p>Available for Laravel, .NET, ERP, MIS, banking software, API and database-driven enterprise
+                    application development.</p>
+                <div class="actions" style="justify-content:center;margin-bottom:0">
+                    <a class="btn primary" href="mailto:nabin0007@gmail.com"><i class="fa-solid fa-envelope"></i> Email
+                        Me</a>
+                    <a class="btn outline" href="https://github.com/nabin0007" target="_blank"><i
+                            class="fa-brands fa-github"></i> GitHub</a>
+                    <a class="btn outline" href="https://www.linkedin.com/in/md-nurul-huda-nobin-15933b59/"
+                        target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">© 2026 Md Nurul Huda Nabin. All rights reserved.</div>
+    </footer>
 </body>
+
 </html>
